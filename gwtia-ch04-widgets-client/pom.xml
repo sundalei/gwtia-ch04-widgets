@@ -39,7 +39,7 @@
         <groupId>net.ltgt.gwt.maven</groupId>
         <artifactId>gwt-maven-plugin</artifactId>
         <configuration>
-          <moduleName>com.manning.gwtia.App</moduleName>
+          <moduleName>com.manning.gwtia.client.Examples</moduleName>
           <moduleShortName>Examples</moduleShortName>
         </configuration>
       </plugin>
