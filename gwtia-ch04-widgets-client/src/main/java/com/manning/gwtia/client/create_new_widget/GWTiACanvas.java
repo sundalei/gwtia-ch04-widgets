@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.manning.gwtia.client.create_new_widget;
 
 import com.google.gwt.core.client.JavaScriptObject;
@@ -17,9 +14,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 /**
- * Our GWTiA Canvas widget used in Chapter 4 of GWTiA
- * (GWT 2.2 introduced a GWT specific Canvas widget, but we keep this for the purpose of the book)
- *
  * The widget shows how to create a new widget from the DOM - it doesn't include any error handling
  * for browsers that do not support the Canvas element.
  * 
@@ -36,9 +30,6 @@ public class GWTiACanvas extends Widget implements HasMouseOverHandlers, HasMous
 
 	/**
 	 * The context of the Canvas, as a JavaScriptObject 
-	 * (see Chapter 09 for details of what a JavaScriptObject is, for now you can just
-	 * read this as a normal Java object that has type JavaScriptObject)
-	 * 
 	 */
 	protected JavaScriptObject context;
 	
@@ -46,9 +37,7 @@ public class GWTiACanvas extends Widget implements HasMouseOverHandlers, HasMous
 	 * Constructor - Creates a DOM element of type Canvas and sets-up it's context.
 	 */
 	public GWTiACanvas(){
-		// Create a GWT DOM Element in memory
 		Element element = Document.get().createElement("canvas");
-		// Call helper method to set up widget
 		setUpWidget(element);
 	}
 	
@@ -57,9 +46,7 @@ public class GWTiACanvas extends Widget implements HasMouseOverHandlers, HasMous
 	 * @param element
 	 */
 	public GWTiACanvas(Element element){
-		// Check the Element is a canvas DOM element
 		assert element.getTagName().equalsIgnoreCase("canvas");
-		// Call helper method to set up widget
 		setUpWidget(element);
 	}
 	
@@ -69,15 +56,12 @@ public class GWTiACanvas extends Widget implements HasMouseOverHandlers, HasMous
 	 * @return
 	 */
 	public GWTiACanvas wrap(Element element) {
-		// Assert that the element is on the DOM page already
 		assert Document.get().getBody().isOrHasChild(element);
-		// Create a new GWTiACanvas widget from that element
 		GWTiACanvas canvas = new GWTiACanvas(element);
 		// Call the onAttach method to make sure it is attached properly into GWT
 		canvas.onAttach();
 		// Add the widget to the list of widgets GWT needs to clean up when the application closes
 		RootPanel.detachOnWindowClose(canvas);
-		// Return the new GWTiACanvas widget
 		return canvas;
 	}
 
@@ -87,7 +71,6 @@ public class GWTiACanvas extends Widget implements HasMouseOverHandlers, HasMous
 	 * @param element The DOM element used for the Canvas
 	 */
 	protected void setUpWidget(Element element){
-		// Set this widget's Element to be the canvas element we have just created
 	    setElement(element);
 	    // Set a style name for the widget; this can follow any naming convention you
 	    // have on your project - we have just called it canvas-style for now.
