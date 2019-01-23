@@ -1,19 +1,11 @@
-/**
- * 
- */
 package com.manning.gwtia.client.safehtml;
 
-// The rest of these imports just relate to standard user interface aspects.
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.StackLayoutPanel;
 
 /**
  * This example shows how to create a widget directly from the DOM.
- * 
- * The example builds a simple canvas widget (although GWT 2.2. introduces a specific GWT
- * widget, we keep this example as it shows how to build a widget)
- * 
  */
 public class SafeHtmlExample extends Composite{
 
