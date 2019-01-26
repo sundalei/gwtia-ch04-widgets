@@ -1,10 +1,7 @@
-/**
- * 
- */
 package com.manning.gwtia.client.build_composite_widget;
 
-import com.google.gwt.event.dom.client.MouseOverEvent;
-import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.event.dom.client.*;
+import com.google.gwt.event.logical.shared.HasValueChangeHandlers;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.i18n.client.HasDirection;
@@ -20,12 +17,9 @@ import com.google.gwt.user.client.ui.TextBox;
  * It consists of a Label (question) and a TextBox (answer) in a
  * HorizontalPanel.
  * 
- * In Ch11's Direction example we move away from the explicit setting of
- * direction to determining direction through estimators (e.g. if there are more
- * RTL words than LTR the diretion of Composite and components would be RTL)
- * 
  */
-public class DataField extends Composite implements HasText, HasDirection {
+public class DataField extends Composite implements HasText, HasDirection,
+		HasMouseOverHandlers, HasMouseOutHandlers, HasValueChangeHandlers<String> {
 
 	// The UI elements we will manipulate
 	InlineLabel theQuestion;
@@ -45,8 +39,7 @@ public class DataField extends Composite implements HasText, HasDirection {
 
 		initWidget(panel);
 
-		this.getElement().getStyle()
-				.setProperty("border", "solid lightblue 2px");
+		this.getElement().getStyle().setProperty("border", "solid lightblue 2px");
 	}
 
 	private void buildDisplay() {
@@ -65,29 +58,33 @@ public class DataField extends Composite implements HasText, HasDirection {
 	// Utility method to get the answer text
 	public String getText() {
 		String answer = "";
-		if (theAnswer != null)
+		if (theAnswer != null) {
 			answer = theAnswer.getText();
+		}
 		return answer;
 	}
 
 	// Utility method to get the question text
 	public String getQuestion() {
 		String question = "";
-		if (theQuestion != null)
+		if (theQuestion != null) {
 			question = theQuestion.getText();
+		}
 		return question;
 	}
 
 	// Utility method to set the answer text
 	public void setText(String text) {
-		if (theAnswer != null)
+		if (theAnswer != null) {
 			theAnswer.setText(text);
+		}
 	}
 
 	// Utility method to set the question text
 	public void setQuestion(String text) {
-		if (theQuestion != null)
+		if (theQuestion != null) {
 			theQuestion.setText(text);
+		}
 	}
 
 	public void setDirection(Direction direction) {
@@ -99,12 +96,18 @@ public class DataField extends Composite implements HasText, HasDirection {
 		return dir;
 	}
 
+	@Override
 	public HandlerRegistration addMouseOverHandler(MouseOverHandler handler) {
 		return addDomHandler(handler, MouseOverEvent.getType());
 	}
 
-	public HandlerRegistration addValueChangeHandler(
-			ValueChangeHandler<String> handler) {
+	@Override
+	public HandlerRegistration addMouseOutHandler(MouseOutHandler handler) {
+		return addDomHandler(handler, MouseOutEvent.getType());
+	}
+
+	@Override
+	public HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> handler) {
 		return theAnswer.addValueChangeHandler(handler);
 	}
 }
