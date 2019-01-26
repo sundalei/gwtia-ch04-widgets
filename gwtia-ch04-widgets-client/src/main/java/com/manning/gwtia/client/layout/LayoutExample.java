@@ -1,21 +1,7 @@
-/**
- * 
- */
 package com.manning.gwtia.client.layout;
 
-// We will be using a LayoutPanel in this example
-import com.google.gwt.user.client.ui.LayoutPanel;
-// We have to make our example extend ResizeComposite (rather than normal Composite)
-import com.google.gwt.user.client.ui.ResizeComposite;
-
-// Standard imports
 import com.google.gwt.dom.client.Style.Unit;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.*;
 
 /**
  * This example shows an example of LayoutPanel in action.
@@ -59,32 +45,30 @@ public class LayoutExample extends ResizeComposite{
 	private void setUpEventHandling(){
 
 		// Add a click handler to the button
-		animateConstraints.addClickHandler(new ClickHandler(){
-			public void onClick(ClickEvent event) {
-				if(!alreadyChanged){
-					// Move the center panel to the right
-					holder.setWidgetTopHeight(center, 0, Unit.PCT, 100, Unit.PCT);
-					holder.setWidgetRightWidth(center, 0, Unit.PCT, 50, Unit.PCT);
-					// Move right panel to the left
-					holder.setWidgetLeftWidth(east, 0, Unit.PCT, 50, Unit.PCT);
-					// Move left panel to the center
-					holder.setWidgetLeftRight(west, 25, Unit.PCT, 25, Unit.PCT);
-					holder.setWidgetTopBottom(west, 25, Unit.PCT, 25, Unit.PCT);
-					// Update the zIndex of left panel, otherwise it will be hidden.
-					west.getElement().getStyle().setZIndex(zIndexCount++);
-				} else {
-					// Move everything back to starting position
-					holder.setWidgetTopHeight(west, 0, Unit.PCT, 100, Unit.PCT);
-					holder.setWidgetLeftWidth(west, 0, Unit.PCT, 50, Unit.PCT);
-					holder.setWidgetRightWidth(east, 0, Unit.PCT, 50, Unit.PCT);
-					holder.setWidgetLeftRight(center, 25, Unit.PCT, 25, Unit.PCT);
-					holder.setWidgetTopBottom(center, 25, Unit.PCT, 25, Unit.PCT);
-					center.getElement().getStyle().setZIndex(zIndexCount++);
-				}
-				// Run the animation between current constraints and the ones we have just set above.
-				holder.animate(500);
-				alreadyChanged = !alreadyChanged;
-			}			
+		animateConstraints.addClickHandler(event -> {
+			if(!alreadyChanged){
+				// Move the center panel to the right
+				holder.setWidgetTopHeight(center, 0, Unit.PCT, 100, Unit.PCT);
+				holder.setWidgetRightWidth(center, 0, Unit.PCT, 50, Unit.PCT);
+				// Move right panel to the left
+				holder.setWidgetLeftWidth(east, 0, Unit.PCT, 50, Unit.PCT);
+				// Move left panel to the center
+				holder.setWidgetLeftRight(west, 25, Unit.PCT, 25, Unit.PCT);
+				holder.setWidgetTopBottom(west, 25, Unit.PCT, 25, Unit.PCT);
+				// Update the zIndex of left panel, otherwise it will be hidden.
+				west.getElement().getStyle().setZIndex(zIndexCount++);
+			} else {
+				// Move everything back to starting position
+				holder.setWidgetTopHeight(west, 0, Unit.PCT, 100, Unit.PCT);
+				holder.setWidgetLeftWidth(west, 0, Unit.PCT, 50, Unit.PCT);
+				holder.setWidgetRightWidth(east, 0, Unit.PCT, 50, Unit.PCT);
+				holder.setWidgetLeftRight(center, 25, Unit.PCT, 25, Unit.PCT);
+				holder.setWidgetTopBottom(center, 25, Unit.PCT, 25, Unit.PCT);
+				center.getElement().getStyle().setZIndex(zIndexCount++);
+			}
+			// Run the animation between current constraints and the ones we have just set above.
+			holder.animate(500);
+			alreadyChanged = !alreadyChanged;
 		});
 	}
 	
